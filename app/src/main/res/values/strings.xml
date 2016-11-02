@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CognitiveGame</string>
+    <string name="login">Welcome</string>
+    <string name="brief_story">The brave traveler , trapped in a cave with a sparkling camp fire. 5 hours to go until dawn,
+    be careful about the monsters in the darkness.</string>
+    <string name="monster_query">Monster Query</string>
+    <string name="query_hints">Darkness is coming. Take your request and survive the night.</string>
+    <string name="n_back_hint">Indicate if the pop up number equals to <span id="number_of_n"></span> number appeared before</string>
+</resources>
