@@ -1,10 +1,16 @@
 package tongzou.cognitivegame.Activity.Activity;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextSwitcher;
 import android.widget.TextView;
 
 import tongzou.cognitivegame.Activity.Class.QuestionRandomGenerator;
@@ -16,12 +22,16 @@ import tongzou.cognitivegame.R;
 
 public class QuestionInterface extends AppCompatActivity {
     public int[] numbers;
-    int pos = 0;
+    public int pos = 0;
+    public Context context;
+    public Integer correct = 0;
+    public int nBack = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_layout);
+        context = this;
 
         final TextView nText = (TextView) findViewById(R.id.N_Back_Number);
         numbers = new QuestionRandomGenerator().generator();
@@ -48,22 +58,51 @@ public class QuestionInterface extends AppCompatActivity {
         corr_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(pos < numbers.length) {
-                    nText.setText(Integer.toString(numbers[pos]));
+               //if(pos < numbers.length) {
+                if(numbers[pos] == numbers[pos - nBack]) {
+                    correct++;
+                    Log.i("===correct", correct+"" + " numbers last: " + numbers[pos - nBack] + " number this: " + numbers[pos] +"");
                 }
+                Log.i("correct", correct+"" + " numbers last: " + numbers[pos - nBack] + " number this: " + numbers[pos] +"");
+                updateTextView(nText);
+                //}else
+                //    FinishQuiz();
             }
         });
 
         wron_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(pos < numbers.length) {
-                    pos++;
-                    nText.setText(Integer.toString(numbers[pos]));
+                if(numbers[pos] != numbers[pos - nBack]) {
+                    correct++;
+                    Log.i("===correct", correct+"" + " numbers last: " + numbers[pos - nBack] + " number this: " + numbers[pos] +"");
                 }
+                Log.i("correct", correct+"" + " numbers last: " + numbers[pos - nBack] + " number this: " + numbers[pos] +"");
+                updateTextView(nText);
             }
         });
+    }
 
+    public void updateTextView(TextView textView){
+        pos++;
+        if(pos < numbers.length)
+            textView.setText(Integer.toString(numbers[pos]));
+        else
+            FinishQuiz();
+    }
 
+    public void FinishQuiz(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(correct.toString() + " correct among " + (numbers.length - nBack) + "");
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent back_to_story = new Intent(context, StoryInterface.class);
+                startActivity(back_to_story);
+                ((Activity)context).finish();
+            }
+        });
+        builder.setCancelable(false);
+        builder.create().show();
     }
 }

@@ -13,7 +13,7 @@ import tongzou.cognitivegame.R;
  */
 
 public class StoryInterface extends AppCompatActivity{
-    String userName;
+    String userName = "Tong";
     Integer hour = 5;
 
     @Override
@@ -22,7 +22,7 @@ public class StoryInterface extends AppCompatActivity{
         setContentView(R.layout.story_layout);
 
         Bundle extras = getIntent().getExtras();
-        userName = extras.getString("userName");
+        //userName = extras.getString("userName");
 
         TextView uName = (TextView) findViewById(R.id.uName);
         uName.setText(userName);
