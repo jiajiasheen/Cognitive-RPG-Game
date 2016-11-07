@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
+import com.hanks.htextview.HTextView;
+
 import tongzou.cognitivegame.Activity.Class.QuestionRandomGenerator;
 import tongzou.cognitivegame.R;
 
@@ -33,10 +35,11 @@ public class QuestionInterface extends AppCompatActivity {
         setContentView(R.layout.quiz_layout);
         context = this;
 
-        final TextView nText = (TextView) findViewById(R.id.N_Back_Number);
-        numbers = new QuestionRandomGenerator().generator();
+        final HTextView nText = (HTextView) findViewById(R.id.N_Back_Number);
 
-        nText.setText(Integer.toString(numbers[pos]));
+        numbers = new QuestionRandomGenerator().generator(2);
+
+        nText.animateText(Integer.toString(numbers[pos]));
 
         final Button nextNumBtn = (Button) findViewById(R.id.next_btn);
         final Button corr_btn = (Button) findViewById(R.id.Correct);
@@ -46,7 +49,7 @@ public class QuestionInterface extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pos++;
-                nText.setText(Integer.toString(numbers[pos]));
+                nText.animateText(Integer.toString(numbers[pos]));
                 if(pos == 2) {
                     nextNumBtn.setVisibility(View.GONE);
                     corr_btn.setVisibility(View.VISIBLE);
@@ -83,10 +86,10 @@ public class QuestionInterface extends AppCompatActivity {
         });
     }
 
-    public void updateTextView(TextView textView){
+    public void updateTextView(HTextView textView){
         pos++;
         if(pos < numbers.length)
-            textView.setText(Integer.toString(numbers[pos]));
+            textView.animateText(Integer.toString(numbers[pos]));
         else
             FinishQuiz();
     }
