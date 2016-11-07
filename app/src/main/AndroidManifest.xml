@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.Activity.MainInterface"/>
-        <activity android:name=".Activity.Fragments.QuestionInterface"/>
+        <activity android:name=".Activity.Fragments.NBackFragment"/>
     </application>
 
 </manifest>

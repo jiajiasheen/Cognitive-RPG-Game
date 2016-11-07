@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
-import tongzou.cognitivegame.Activity.Fragments.StoryInterface;
+import tongzou.cognitivegame.Activity.Fragments.MainStoryFragment;
 import tongzou.cognitivegame.R;
 
 /**
@@ -18,7 +18,7 @@ public class MainInterface extends AppCompatActivity {
     public static String userName;
     public static Integer hour_left;
     public static ArrayList<Integer> time_consump_list;
-    public static ArrayList<Integer> accuracy_list;
+    public static ArrayList<Double> accuracy_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class MainInterface extends AppCompatActivity {
         if(savedInstanceState == null){
             FragmentManager fragmentManager = getFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            StoryInterface storyFragment = new StoryInterface();
+            MainStoryFragment storyFragment = new MainStoryFragment();
             fragmentTransaction.add(R.id.main_interface, storyFragment);
             fragmentTransaction.commit();
         }

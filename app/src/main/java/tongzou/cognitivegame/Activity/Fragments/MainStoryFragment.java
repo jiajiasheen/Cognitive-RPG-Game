@@ -17,7 +17,7 @@ import tongzou.cognitivegame.R;
  * Created by Draco on 2016-11-01.
  */
 
-public class StoryInterface extends Fragment{
+public class MainStoryFragment extends Fragment{
     String userName = MainInterface.userName;
     Integer hour = MainInterface.hour_left;
     private View resultView;
@@ -36,7 +36,7 @@ public class StoryInterface extends Fragment{
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getFragmentManager();
-                QuestionInterface qi = new QuestionInterface();
+                NBackFragment qi = new NBackFragment();
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 ft.replace(R.id.main_interface, qi);
                 //ft.addToBackStack(null);

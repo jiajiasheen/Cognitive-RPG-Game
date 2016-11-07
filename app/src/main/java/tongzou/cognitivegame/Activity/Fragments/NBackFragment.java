@@ -23,7 +23,7 @@ import tongzou.cognitivegame.R;
  * Created by Draco on 2016-11-01.
  */
 
-public class QuestionInterface extends Fragment {
+public class NBackFragment extends Fragment {
     private View resultView;
     private int[] numbers;
     private int pos = 0;
@@ -114,10 +114,12 @@ public class QuestionInterface extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 FragmentManager fragmentManager = getFragmentManager();
-                StoryInterface si = new StoryInterface();
+                MainStoryFragment si = new MainStoryFragment();
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 ft.replace(R.id.main_interface, si);
                 MainInterface.hour_left--;
+                double accurcy = (double) correct / (double) numbers.length;
+                MainInterface.accuracy_list.add(accurcy);
                 ft.commit();
             }
         });
