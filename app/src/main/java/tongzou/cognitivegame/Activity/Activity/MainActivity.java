@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
         context = this;
 
-
         Button loginBtn = (Button) findViewById(R.id.login_btn);
         final EditText mEditTxt = (EditText) findViewById(R.id.login_input);
 
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 userName = mEditTxt.getText().toString();
-                Intent main_ui = new Intent(context, QuestionInterface.class);
+                Intent main_ui = new Intent(context, MainInterface.class).putExtra("uName", userName);
                 startActivity(main_ui);
                 finish();
             }
