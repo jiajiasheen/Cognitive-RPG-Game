@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CognitiveGame.iml" filepath="$PROJECT_DIR$/CognitiveGame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Cognitive-RPG-Game.iml" filepath="$PROJECT_DIR$/Cognitive-RPG-Game.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
