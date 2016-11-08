@@ -17,6 +17,7 @@ import tongzou.cognitivegame.R;
 public class MainInterface extends AppCompatActivity {
     public static String userName;
     public static Integer hour_left;
+    public static int nBack;
     public static ArrayList<Integer> time_consump_list;
     public static ArrayList<Double> accuracy_list;
 
@@ -27,6 +28,7 @@ public class MainInterface extends AppCompatActivity {
 
         userName = getIntent().getStringExtra("uName");
         hour_left = 5;
+        nBack = 2;
         time_consump_list = new ArrayList<>();
         accuracy_list = new ArrayList<>();
 

@@ -5,4 +5,5 @@
     be careful about the monsters in the darkness.</string>
     <string name="monster_query">Monster Query</string>
     <string name="query_hints">Darkness is coming. Take your request and survive the night.</string>
+    <string name="hour_hints">%d hours before dawn</string>
 </resources>

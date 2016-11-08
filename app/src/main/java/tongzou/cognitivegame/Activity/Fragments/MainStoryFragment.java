@@ -20,16 +20,20 @@ import tongzou.cognitivegame.R;
 public class MainStoryFragment extends Fragment{
     String userName = MainInterface.userName;
     Integer hour = MainInterface.hour_left;
-    private View resultView;
+    View resultView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         resultView = inflater.inflate(R.layout.story_layout, container, false);
 
         TextView uName = (TextView) resultView.findViewById(R.id.uName);
-        uName.setText(userName);
         TextView hours = (TextView) resultView.findViewById(R.id.hours);
-        hours.setText(hour.toString() + " hours before dawn");
+
+        if(hour > 1 && hour <= 3)
+            MainInterface.nBack = 3; //increate level of difficulty after two questions
+
+        uName.setText(userName);
+        hours.setText(getString(R.string.hour_hints, hour));
 
         Button tmp_button = (Button) resultView.findViewById(R.id.tmp_btn);
         tmp_button.setOnClickListener(new View.OnClickListener() {

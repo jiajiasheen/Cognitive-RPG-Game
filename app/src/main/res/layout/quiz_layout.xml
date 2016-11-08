@@ -70,7 +70,7 @@
             android:layout_height="100dp"
             android:textSize="90sp"
             android:layout_centerInParent="true"
-            htext:animateType="scale"
+            htext:animateType="evaporate"
             android:gravity="center"
             />
 

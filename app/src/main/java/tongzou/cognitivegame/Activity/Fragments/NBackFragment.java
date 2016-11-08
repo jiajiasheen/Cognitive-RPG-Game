@@ -24,15 +24,15 @@ import tongzou.cognitivegame.R;
  */
 
 public class NBackFragment extends Fragment {
-    private View resultView;
     private int[] numbers;
     private int pos = 0;
     private Integer correct = 0;
-    private int nBack = 2;
+    private int nBack;
+    private int hour_left = MainInterface.hour_left;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        resultView = inflater.inflate(R.layout.quiz_layout, container, false);
+        View resultView = inflater.inflate(R.layout.quiz_layout, container, false);
 
         final HTextView nText = (HTextView) resultView.findViewById(R.id.N_Back_Number); //animation pop up text view
         final Button nextNumBtn = (Button) resultView.findViewById(R.id.next_btn); //initialize n-back question array
@@ -40,7 +40,10 @@ public class NBackFragment extends Fragment {
         final Button corr_btn = (Button) resultView.findViewById(R.id.Correct);
         final Button wron_btn = (Button) resultView.findViewById(R.id.Wrong);
 
-        numbers = new QuestionRandomGenerator().generator(2);
+        nBack = MainInterface.nBack;
+        numbers = new QuestionRandomGenerator().generator(nBack);
+        Log.i("===Nums array length: ", numbers.length + "");
+        Log.i("===Backs: ", nBack + "");
         nText.animateText(Integer.toString(numbers[pos]));
 
         //click event for next number button
@@ -48,8 +51,9 @@ public class NBackFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 pos++;
+                nText.animateText("");
                 nText.animateText(Integer.toString(numbers[pos]));
-                if(pos == 2) {
+                if(pos == nBack) {
                     nextNumBtn.setVisibility(View.GONE);
                     corr_btn.setVisibility(View.VISIBLE);
                     wron_btn.setVisibility(View.VISIBLE);
@@ -69,7 +73,7 @@ public class NBackFragment extends Fragment {
                 Log.i("correct", correct+"" + " numbers last: " + numbers[pos - nBack] + " number this: " + numbers[pos] +"");
                 updateTextView(nText);
                 //}else
-                //    FinishQuiz();
+                //FinishQuiz();
             }
         });
 
@@ -101,26 +105,38 @@ public class NBackFragment extends Fragment {
 
     private void updateTextView(HTextView textView){
         pos++;
-        if(pos < numbers.length)
+        if(pos < numbers.length) {
+            textView.animateText("");
             textView.animateText(Integer.toString(numbers[pos]));
+        }
         else
             FinishQuiz();
     }
 
     private void FinishQuiz(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Summary of this quiz");
         builder.setMessage(correct.toString() + " correct among " + (numbers.length - nBack) + "");
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                FragmentManager fragmentManager = getFragmentManager();
-                MainStoryFragment si = new MainStoryFragment();
-                FragmentTransaction ft = fragmentManager.beginTransaction();
-                ft.replace(R.id.main_interface, si);
                 MainInterface.hour_left--;
                 double accurcy = (double) correct / (double) numbers.length;
                 MainInterface.accuracy_list.add(accurcy);
-                ft.commit();
+                FragmentManager fragmentManager = getFragmentManager();
+
+                if(MainInterface.hour_left != 0){ //if still has hours, back to main story
+                    MainStoryFragment si = new MainStoryFragment();
+                    FragmentTransaction ft = fragmentManager.beginTransaction();
+                    ft.replace(R.id.main_interface, si);
+                    ft.commit();
+                }
+                else{ //to ending if game is over
+                    EndingFragment ef = new EndingFragment();
+                    FragmentTransaction ft = fragmentManager.beginTransaction();
+                    ft.replace(R.id.main_interface, ef);
+                    ft.commit();
+                }
             }
         });
         builder.setCancelable(false);
