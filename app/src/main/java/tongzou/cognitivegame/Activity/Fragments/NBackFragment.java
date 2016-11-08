@@ -97,7 +97,7 @@ public class NBackFragment extends Fragment {
             }
         });
 
-        generateHint(getActivity());
+        onCreateHint(getActivity(), hour_left);
 
 
         return resultView;
@@ -153,5 +153,41 @@ public class NBackFragment extends Fragment {
         builder.setPositiveButton("Got it!", null);
         builder.setCancelable(false);
         builder.create().show();
+    }
+
+    private void onCreateHint(Context context, int hour){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        switch (hour){
+            case 5:
+                generateHint(context);
+                break;
+
+            case 4:
+                break;
+
+            case 3:
+                builder.setTitle("Three Back!");
+                builder.setMessage("Things get a little bit harder, enjoy your 3-back challenge.");
+                builder.setPositiveButton("Ok", null);
+                builder.setCancelable(false);
+                builder.create().show();
+                break;
+
+            case 2:
+                break;
+
+            case 1:
+                builder.setTitle("Four Back!");
+                builder.setMessage("Oops! Things are getting insane. Monsters are trying to ask you " +
+                        "questions that they even do not know the answer.");
+                builder.setPositiveButton("Alright...", null);
+                builder.setCancelable(false);
+                builder.create().show();
+                break;
+
+            default:
+                break;
+        }
     }
 }

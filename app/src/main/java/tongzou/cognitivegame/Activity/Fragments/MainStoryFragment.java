@@ -20,17 +20,19 @@ import tongzou.cognitivegame.R;
 public class MainStoryFragment extends Fragment{
     String userName = MainInterface.userName;
     Integer hour = MainInterface.hour_left;
-    View resultView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        resultView = inflater.inflate(R.layout.story_layout, container, false);
+        View resultView = inflater.inflate(R.layout.story_layout, container, false);
 
         TextView uName = (TextView) resultView.findViewById(R.id.uName);
         TextView hours = (TextView) resultView.findViewById(R.id.hours);
 
         if(hour > 1 && hour <= 3)
-            MainInterface.nBack = 3; //increate level of difficulty after two questions
+            MainInterface.nBack = 3; //increase level of difficulty, god it's hard
+
+        if(hour == 1)
+            MainInterface.nBack = 4; //insane level, seriously?
 
         uName.setText(userName);
         hours.setText(getString(R.string.hour_hints, hour));
