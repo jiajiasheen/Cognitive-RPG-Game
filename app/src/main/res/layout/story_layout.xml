@@ -44,10 +44,10 @@
 
     <ImageView
         android:id="@+id/somepic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_centerInParent="true"
-        android:src="@mipmap/ic_launcher"/>
+        android:background="@drawable/run_animation"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -74,6 +74,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/story_main"
             android:text="Next Quiz"
+            android:layout_centerHorizontal="true" />
+        <Button
+            android:id="@+id/tmp2_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tmp_btn"
+            android:text="visual test"
             android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
