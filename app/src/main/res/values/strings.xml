@@ -6,4 +6,6 @@
     <string name="monster_query">Monster Query</string>
     <string name="query_hints">Darkness is coming. Take your request and survive the night.</string>
     <string name="hour_hints">%d hours before dawn</string>
+    <string name="ending_question_number">Question No.%d</string>
+    <string name="ending_results">%f\%</string>
 </resources>

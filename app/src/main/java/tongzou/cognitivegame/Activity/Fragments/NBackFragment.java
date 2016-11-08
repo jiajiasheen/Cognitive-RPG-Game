@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import com.hanks.htextview.HTextView;
-
 import tongzou.cognitivegame.Activity.Activity.MainInterface;
 import tongzou.cognitivegame.Activity.Class.QuestionRandomGenerator;
 import tongzou.cognitivegame.R;
